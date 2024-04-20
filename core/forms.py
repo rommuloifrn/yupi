@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pin
+from .models import Pin, User
 
 class RegisterForm(forms.Form):
     username = forms.CharField(max_length=10, required=True)
@@ -10,3 +10,8 @@ class PinForm(forms.ModelForm):
     class Meta:
         model = Pin
         fields = ['url', 'text', 'visible']
+        
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['bio', 'location']

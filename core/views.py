@@ -2,11 +2,12 @@ from django.shortcuts import render
 
 from django.views import View
 
-from .forms import RegisterForm, PinForm
+from .forms import RegisterForm, PinForm, EditProfileForm
 
 from .models import Pin
 
 from django.contrib.auth.views import LoginView, LogoutView
+
 from .models import User
 
 from django.contrib.auth.decorators import login_required
@@ -38,6 +39,23 @@ class HomeView(View):
 class ProfileView(LoginRequiredView):
     def get(self, request):
         return render(request, 'core/user/profile.html', {'user':request.user})
+    
+            
+class EditProfileView(LoginRequiredView):
+    def get(self, request):
+        data = {'bio':request.user.bio, 'location':request.user.location}
+        form = EditProfileForm(instance=request.user)
+        return render(request, 'core/user/edit_profile.html', {'form':form})
+    def post(self, request):
+        user = request.user
+        form = EditProfileForm(request.POST)
+        if form.is_valid():
+            user.bio = form.cleaned_data['bio']
+            user.location = form.cleaned_data['location']
+            user.save()
+            return http.HttpResponseRedirect('/profile')
+        else:
+            return render(request, '')
     
 class RegisterView(View):
     def get(self, request):

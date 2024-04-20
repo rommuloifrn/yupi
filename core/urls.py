@@ -7,6 +7,7 @@ urlpatterns = [
     path('logout', views.LogoutView.as_view(), name='logout'),
     path('register', views.RegisterView.as_view(), name='register'),
     path('profile', views.ProfileView.as_view(), name='profile'),
+    path('profile/edit', views.EditProfileView.as_view(), name='edit profile'),
     
     path('create-pin', views.CreatePinView.as_view(), name='create pin'),
     path('delete-pin/<int:pk>', views.DeletePinView.as_view(), name='delete pin')
