@@ -1,0 +1,24 @@
+{% extends 'core/main.html' %}
+
+{% block content %}
+
+<h2>{{user}}</h2>
+{{user.pin_set.all.count}} pins!
+
+{% if user.pin_set.all %}
+<h2>Seus pins</h2>
+{% for pin in user.pin_set.all %}
+<fieldset>
+    <legend>{{pin.url}}</legend>
+    <p>{{pin.text}}</p>
+    <form action="{% url 'delete pin' pin.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+    </form>
+</fieldset>
+{% endfor %}
+{% else %}
+<h2>Você não tem pins</h2>
+{% endif %}
+
+{% endblock content %}

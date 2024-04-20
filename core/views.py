@@ -34,6 +34,10 @@ class HomeView(View):
         pins = Pin.objects.all()
         return render(request, 'core/home.html', {'pins':pins})
     
+class ProfileView(LoginRequiredView):
+    def get(self, request):
+        return render(request, 'core/user/profile.html', {'user':request.user})
+    
 class RegisterView(View):
     def get(self, request):
         form = RegisterForm()
@@ -68,3 +72,8 @@ class CreatePinView(LoginRequiredView):
         else: 
             return render(request, 'core/crud/pin/create.html', {'form':form})
         
+class DeletePinView(LoginRequiredView):
+    def post(self, request, *args, **kwargs):
+        pin = get_object_or_404(Pin, id=kwargs['pk'])
+        pin.delete()
+        return http.HttpResponseRedirect('/profile')

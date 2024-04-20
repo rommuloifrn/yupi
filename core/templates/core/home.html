@@ -1,5 +1,7 @@
 {% extends 'core/main.html' %}
 
+{% block title %}YuPi{% endblock title %}
+
 {% block content %}
 <p>Olá!</p>
 <a href="{% url 'login' %}">login</a>
@@ -9,7 +11,7 @@
     <input type="submit" value="logout">
 </form>
 {% if request.user.is_authenticated %}
-voce esta logado como {{request.user}}!
+voce esta logado como <a href="{% url 'profile' %}">{{request.user}}</a>!
 {% endif %}
 
 <div>
