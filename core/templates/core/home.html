@@ -1,0 +1,14 @@
+{% extends 'core/main.html' %}
+
+{% block content %}
+<p>Olá!</p>
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'register' %}">registrar</a>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <input type="submit" value="logout">
+</form>
+{% if request.user.is_authenticated %}
+voce esta logado como {{request.user}}!
+{% endif %}
+{% endblock content %}
