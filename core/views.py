@@ -37,7 +37,7 @@ class HomeView(View):
 class RegisterView(View):
     def get(self, request):
         form = RegisterForm()
-        return render(request, 'core/register.html', {'form':form})
+        return render(request, 'core/auth/register.html', {'form':form})
     def post(self, request):
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -45,20 +45,20 @@ class RegisterView(View):
             user.save()
             return http.HttpResponseRedirect('/')
         else: 
-            return render(request, 'core/register', {'form':form})
+            return render(request, 'core/auth/register', {'form':form})
 
 class LoginView(LoginView):
-    template_name = 'core/login.html'
+    template_name = 'core/auth/login.html'
     next_page = '/'
     
 class LogoutView(LogoutView):
     next_page = ''
-    template_name = 'core/logout.html'
+    template_name = 'core/auth/logout.html'
     
 class CreatePinView(LoginRequiredView):
     def get(self, request):
         form = PinForm()
-        return render(request, 'core/pin_create.html', {'form':form})
+        return render(request, 'core/crud/pin/create.html', {'form':form})
     def post(self, request):
         form = PinForm(request.POST)
         if form.is_valid():
@@ -66,5 +66,5 @@ class CreatePinView(LoginRequiredView):
             new_pin.save()
             return http.HttpResponseRedirect('/')
         else: 
-            return render(request, 'core/pin_create.html', {'form':form})
+            return render(request, 'core/crud/pin/create.html', {'form':form})
         
