@@ -11,4 +11,16 @@
 {% if request.user.is_authenticated %}
 voce esta logado como {{request.user}}!
 {% endif %}
+
+<div>
+    <a href="{% url 'create pin' %}">Novo pin</a>
+</div>
+
+<h2>Últimos pins da comunidade</h2>
+{% for pin in pins %}
+<fieldset>
+    <legend>{{pin.url}}</legend>
+    <p>{{pin.text}}</p>
+</fieldset>
+{% endfor %}
 {% endblock content %}
