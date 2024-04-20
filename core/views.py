@@ -7,7 +7,8 @@ from .forms import RegisterForm, PinForm
 from .models import Pin
 
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.models import User
+from .models import User
+
 from django.contrib.auth.decorators import login_required
 
 from django.utils.decorators import method_decorator
