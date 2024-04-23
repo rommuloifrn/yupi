@@ -20,6 +20,7 @@
         {% csrf_token %}
         <input type="submit" value="delete">
     </form>
+    <a href="{% url 'read pin' pin.id %}">read pin</a>
 </fieldset>
 {% endfor %}
 {% else %}

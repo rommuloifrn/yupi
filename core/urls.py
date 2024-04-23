@@ -10,5 +10,6 @@ urlpatterns = [
     path('profile/edit', views.EditProfileView.as_view(), name='edit profile'),
     
     path('create-pin', views.CreatePinView.as_view(), name='create pin'),
+    path('read-pin/<int:pk>', views.ReadPinView.as_view(), name='read pin'),
     path('delete-pin/<int:pk>', views.DeletePinView.as_view(), name='delete pin')
 ]

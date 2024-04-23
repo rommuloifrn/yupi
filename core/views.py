@@ -1,24 +1,17 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView
+from django.utils.decorators import method_decorator
+from django import http
+from django.shortcuts import get_object_or_404
 from django.views import View
 
 from .forms import RegisterForm, PinForm, EditProfileForm
 
-from .models import Pin
-
-from django.contrib.auth.views import LoginView, LogoutView
-
-from .models import User
-
-from django.contrib.auth.decorators import login_required
-
-from django.utils.decorators import method_decorator
-
-from django import http
-
-from django.shortcuts import get_object_or_404
+from .models import Pin, User
 
 from abc import abstractclassmethod
+from .youtube_api import APIHandler
 
 
 @method_decorator(login_required, name='dispatch')
@@ -28,7 +21,6 @@ class LoginRequiredView(View):
         pass
     def post():
         pass
-    
     
     
 class HomeView(View):
@@ -96,3 +88,11 @@ class DeletePinView(LoginRequiredView):
         pin = get_object_or_404(Pin, id=kwargs['pk'])
         pin.delete()
         return http.HttpResponseRedirect('/profile')
+    
+class ReadPinView(View):
+    def get(self, request, *args, **kwargs):
+        pin = get_object_or_404(Pin, id=kwargs['pk'])
+        videoinfo = APIHandler.get_video_info(pin.url)
+        
+        return render(request, 'core/crud/pin/read.html', {'pin':pin, 'videoinfo':videoinfo})
+        

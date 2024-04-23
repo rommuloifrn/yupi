@@ -1,0 +1,8 @@
+{% extends 'core/main.html' %}
+
+{% block content %}
+{{pin.text}}
+<div>{{videoinfo.title}}</div>
+
+<img src="{{videoinfo.thumbnails.default.url}}" alt="">
+{% endblock content %}
