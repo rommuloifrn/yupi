@@ -14,7 +14,7 @@
 <h2>Seus pins</h2>
 {% for pin in user.pin_set.all %}
 <fieldset>
-    <legend>{{pin.url}}</legend>
+    <legend>{{pin.video_id}}</legend>
     <p>{{pin.text}}</p>
     <form action="{% url 'delete pin' pin.id %}" method="post">
         {% csrf_token %}

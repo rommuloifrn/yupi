@@ -21,7 +21,7 @@ voce esta logado como <a href="{% url 'profile' %}">{{request.user}}</a>!
 <h2>Últimos pins da comunidade</h2>
 {% for pin in pins %}
 <fieldset>
-    <legend>{{pin.url}}</legend>
+    <legend>{{pin.video_id}}</legend>
     <p>{{pin.text}}</p>
 </fieldset>
 {% endfor %}

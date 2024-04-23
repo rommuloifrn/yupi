@@ -9,7 +9,7 @@ class RegisterForm(forms.Form):
 class PinForm(forms.ModelForm):
     class Meta:
         model = Pin
-        fields = ['url', 'text', 'visible']
+        fields = ['video_id', 'text', 'visible']
         
 class EditProfileForm(forms.ModelForm):
     class Meta:

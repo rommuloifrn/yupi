@@ -12,6 +12,6 @@ class User(AbstractUser):
 class Pin(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
-    url = models.CharField(max_length=200)
+    video_id = models.CharField(max_length=200)
     text = models.TextField(max_length=400)
     visible = models.BooleanField()

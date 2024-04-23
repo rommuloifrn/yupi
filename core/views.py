@@ -77,7 +77,7 @@ class CreatePinView(LoginRequiredView):
     def post(self, request):
         form = PinForm(request.POST)
         if form.is_valid():
-            new_pin = Pin(user=request.user, url=form.cleaned_data['url'], text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
+            new_pin = Pin(user=request.user, video_id=form.cleaned_data['video_id'], text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
             new_pin.save()
             return http.HttpResponseRedirect('/')
         else: 
@@ -92,7 +92,7 @@ class DeletePinView(LoginRequiredView):
 class ReadPinView(View):
     def get(self, request, *args, **kwargs):
         pin = get_object_or_404(Pin, id=kwargs['pk'])
-        videoinfo = APIHandler.get_video_info(pin.url)
+        videoinfo = APIHandler.get_video_info(pin.video_id)
         
         return render(request, 'core/crud/pin/read.html', {'pin':pin, 'videoinfo':videoinfo})
         
