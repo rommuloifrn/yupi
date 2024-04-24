@@ -11,7 +11,7 @@ from .forms import RegisterForm, PinForm, EditProfileForm
 from .models import Pin, User
 
 from abc import abstractclassmethod
-from .youtube_api import APIHandler
+from .youtube_api_bridge import APIHandler, Parser
 
 
 @method_decorator(login_required, name='dispatch')
@@ -77,7 +77,7 @@ class CreatePinView(LoginRequiredView):
     def post(self, request):
         form = PinForm(request.POST)
         if form.is_valid():
-            new_pin = Pin(user=request.user, video_id=form.cleaned_data['video_id'], text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
+            new_pin = Pin(user=request.user, video_id=Parser.parse_url(form.cleaned_data['video_id']), text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
             new_pin.save()
             return http.HttpResponseRedirect('/')
         else: 

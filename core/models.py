@@ -2,7 +2,7 @@ from django.db import models
 #from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from .youtube_api import APIHandler
+from .youtube_api_bridge import APIHandler
 
 # Create your models here.
 

@@ -1,5 +1,12 @@
-import requests
+import requests, re
 from django.conf import settings
+
+class Parser:
+    def parse_url(url):
+        pattern = '^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*' #'^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*'
+        video_id = re.search(pattern, url).group(2)
+        
+        return video_id
 
 class APIHandler:
     key = settings.API_KEY
