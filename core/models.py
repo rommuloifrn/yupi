@@ -2,6 +2,7 @@ from django.db import models
 #from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from .youtube_api import APIHandler
 
 # Create your models here.
 
@@ -15,3 +16,7 @@ class Pin(models.Model):
     video_id = models.CharField(max_length=200)
     text = models.TextField(max_length=400)
     visible = models.BooleanField()
+    
+    def snippet(self):
+        return APIHandler.get_video_info(self.video_id)
+        
