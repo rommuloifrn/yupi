@@ -4,11 +4,6 @@
 
 {% block content %}
 
-
-<div>
-    <a href="{% url 'create pin' %}">Novo pin</a>
-</div>
-
 <h2>Últimos pins da comunidade</h2>
 {% for pin in pins %}
 <fieldset>

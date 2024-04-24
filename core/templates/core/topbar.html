@@ -7,6 +7,9 @@
     </form>
     
     voce esta logado como <a href="{% url 'profile' %}">{{request.user}}</a>!
+    <div>
+        <a href="{% url 'create pin' %}">Novo pin</a>
+    </div>
     {% else %}
     <a href="{% url 'login' %}">login</a>
     <a href="{% url 'register' %}">registrar</a>
