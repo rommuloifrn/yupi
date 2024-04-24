@@ -3,16 +3,7 @@
 {% block title %}YuPi{% endblock title %}
 
 {% block content %}
-<p>Olá!</p>
-<a href="{% url 'login' %}">login</a>
-<a href="{% url 'register' %}">registrar</a>
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <input type="submit" value="logout">
-</form>
-{% if request.user.is_authenticated %}
-voce esta logado como <a href="{% url 'profile' %}">{{request.user}}</a>!
-{% endif %}
+
 
 <div>
     <a href="{% url 'create pin' %}">Novo pin</a>

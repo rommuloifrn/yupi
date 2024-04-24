@@ -1,0 +1,14 @@
+<div>
+    <a href="{% url 'home' %}">home</a>
+    {% if request.user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <input type="submit" value="logout">
+    </form>
+    
+    voce esta logado como <a href="{% url 'profile' %}">{{request.user}}</a>!
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'register' %}">registrar</a>
+    {% endif %}
+</div>
