@@ -21,6 +21,7 @@
         <input type="submit" value="delete">
     </form>
     <a href="{% url 'read pin' pin.id %}">read pin</a>
+    <a href="{% url 'update pin' pin.id %}">edit pin</a>
 </fieldset>
 {% endfor %}
 {% else %}

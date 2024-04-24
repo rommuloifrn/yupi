@@ -6,7 +6,7 @@ from django import http
 from django.shortcuts import get_object_or_404
 from django.views import View
 
-from .forms import RegisterForm, PinForm, EditProfileForm
+from .forms import RegisterForm, PinForm, EditProfileForm, EditPinForm
 
 from .models import Pin, User
 
@@ -82,6 +82,22 @@ class CreatePinView(LoginRequiredView):
             return http.HttpResponseRedirect('/')
         else: 
             return render(request, 'core/crud/pin/create.html', {'form':form})
+        
+class UpdatePinView(LoginRequiredView):
+    def get(self, request, *args, **kwargs):
+        pin = get_object_or_404(Pin, pk=kwargs['pk'])
+        form = EditPinForm(instance=pin)
+        return render(request, 'core/crud/pin/update.html', {'form':form, 'pin':pin})
+    def post(self, request, *args, **kwargs):
+        form = EditPinForm(request.POST)
+        if form.is_valid():
+            pin = get_object_or_404(Pin, pk=kwargs['pk'])
+            pin.text = form.cleaned_data['text']
+            pin.visible = form.cleaned_data['visible']
+            pin.save()
+            return http.HttpResponseRedirect('/profile')
+        else:
+            return render(request, 'core/crud/pin/update.html', {'form':form, 'pin':pin})
         
 class DeletePinView(LoginRequiredView):
     def post(self, request, *args, **kwargs):

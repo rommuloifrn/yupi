@@ -11,5 +11,6 @@ urlpatterns = [
     
     path('create-pin', views.CreatePinView.as_view(), name='create pin'),
     path('read-pin/<int:pk>', views.ReadPinView.as_view(), name='read pin'),
+    path('update-pin/<int:pk>', views.UpdatePinView.as_view(), name='update pin'),
     path('delete-pin/<int:pk>', views.DeletePinView.as_view(), name='delete pin')
 ]
