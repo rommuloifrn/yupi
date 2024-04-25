@@ -70,6 +70,18 @@ class LogoutView(LogoutView):
     next_page = ''
     template_name = 'core/auth/logout.html'
     
+class SearchUserView(View):
+    def post(self, request):
+        query = request.POST.get('usernamequery', '')
+        users = User.objects.filter(username__icontains=query)
+        return render(request, 'core/user/search.html', {'users':users})
+
+class ReadUserView(View):
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(User, pk=kwargs['pk'])
+        return render(request, 'core/user/another_profile.html', {'user':user})
+        
+
 class CreatePinView(LoginRequiredView):
     def get(self, request):
         form = PinForm()

@@ -8,6 +8,8 @@ urlpatterns = [
     path('register', views.RegisterView.as_view(), name='register'),
     path('profile', views.ProfileView.as_view(), name='profile'),
     path('profile/edit', views.EditProfileView.as_view(), name='edit profile'),
+    path('search-user', views.SearchUserView.as_view(), name='search user'),
+    path('read-user/<int:pk>', views.ReadUserView.as_view(), name='read user'),
     
     path('create-pin', views.CreatePinView.as_view(), name='create pin'),
     path('read-pin/<int:pk>', views.ReadPinView.as_view(), name='read pin'),

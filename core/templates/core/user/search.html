@@ -1,0 +1,12 @@
+{% extends 'core/main.html' %}
+{% load static %}
+
+{% block content %}
+{% for user in users %}
+<fieldset>
+    <legend>
+        <a href="{% url 'read user' user.id %}">{{user}}</a>
+    </legend>
+</fieldset>
+{% endfor %}
+{% endblock content %}
