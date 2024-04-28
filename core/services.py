@@ -28,7 +28,6 @@ class YoutubeAPIService():
             return VideoUnit(youtube_id=video_id, title=data['snippet']['title'], duration=delta, published_at=data['snippet']['publishedAt'], thumbnail_url=data['snippet']['thumbnails']['medium']['url'])
         
 
-
     
 class YoutubeVideoService():
     def create(video_id):
