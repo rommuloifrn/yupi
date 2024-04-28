@@ -1,8 +1,10 @@
 import requests
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 from .models import VideoUnit, Pin, VideoUnit
 from datetime import datetime, timedelta
 from isoduration import parse_duration
+
 
 class YoutubeAPIService():
     key = settings.API_KEY
@@ -55,3 +57,17 @@ class PinService():
             raise Exception("resource not encountered.")
         pin.video = video
         pin.save()
+        
+    def is_owner(user, pin):
+        if pin.user != user:
+            raise Exception("You shouldn't touch that!")
+        return True
+    
+    def update_pin(request, pin):
+        if PinService.is_owner(request.user, pin):
+            pin.save()
+    
+    def delete_pin(request, pin_id):
+        pin = get_object_or_404(Pin, pk=pin_id)
+        if PinService.is_owner(request.user, pin):
+            pin.delete()

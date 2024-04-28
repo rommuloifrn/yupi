@@ -107,15 +107,14 @@ class UpdatePinView(LoginRequiredView):
             pin = get_object_or_404(Pin, pk=kwargs['pk'])
             pin.text = form.cleaned_data['text']
             pin.visible = form.cleaned_data['visible']
-            pin.save()
+            PinService.update_pin(request, pin)
             return http.HttpResponseRedirect('/profile')
         else:
             return render(request, 'core/crud/pin/update.html', {'form':form, 'pin':pin})
         
 class DeletePinView(LoginRequiredView):
     def post(self, request, *args, **kwargs):
-        pin = get_object_or_404(Pin, id=kwargs['pk'])
-        pin.delete()
+        PinService.delete_pin(request, kwargs['pk'])
         return http.HttpResponseRedirect('/profile')
     
 class ReadPinView(View):
