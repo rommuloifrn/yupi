@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django import http
 from django.shortcuts import get_object_or_404
 from django.views import View
+from .services import PinService
 
 from .forms import RegisterForm, PinForm, EditProfileForm, EditPinForm
 
@@ -89,8 +90,8 @@ class CreatePinView(LoginRequiredView):
     def post(self, request):
         form = PinForm(request.POST)
         if form.is_valid():
-            new_pin = Pin(user=request.user, video_id=Parser.parse_url(form.cleaned_data['video_id']), text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
-            new_pin.save()
+            new_pin = Pin(user=request.user, text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
+            PinService.create_pin(request, new_pin, form.cleaned_data['video_id'])
             return http.HttpResponseRedirect('/')
         else: 
             return render(request, 'core/crud/pin/create.html', {'form':form})
