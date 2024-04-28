@@ -1,7 +1,8 @@
-from .models import VideoUnit, Pin, VideoUnit
-from django.conf import settings
 import requests
+from django.conf import settings
+from .models import VideoUnit, Pin, VideoUnit
 from datetime import datetime, timedelta
+from isoduration import parse_duration
 
 class YoutubeAPIService():
     key = settings.API_KEY
@@ -21,11 +22,8 @@ class YoutubeAPIService():
         else:
             data = videoresource[0]
         
-            duration_raw = data['contentDetails']['duration']
-            duration_proc = duration_raw.replace('PT', '').replace('M', ':').replace('H', ':').replace('S', '')
-            try: dt = datetime.strptime(duration_proc, '%H:%M:%S')
-            except: dt = datetime.strptime(duration_proc, '%M:%S')
-            delta = timedelta(hours=dt.hour, minutes=dt.minute, seconds=dt.second)
+            duration = parse_duration(data['contentDetails']['duration'])
+            delta = timedelta(days=int(duration.date.days), hours=int(duration.time.hours), minutes=int(duration.time.minutes), seconds=int(duration.time.seconds))
             
             return VideoUnit(youtube_id=video_id, title=data['snippet']['title'], duration=delta, published_at=data['snippet']['publishedAt'], thumbnail_url=data['snippet']['thumbnails']['medium']['url'])
         
