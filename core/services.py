@@ -13,23 +13,22 @@ class YoutubeAPIService():
         key = YoutubeAPIService.key
         
         response = requests.get(f'{url}&id={video_id}&key={key}&part=snippet, contentDetails&fields=items/snippet/title, items/snippet/thumbnails, items/contentDetails/duration, items/snippet/publishedAt')
-        print(f"debug: {response.json()}, {response.status_code}, id:{video_id}")
-        resource = response.json()['items']
+        json = response.json()
+        videoresource = json['items']
+        print(f"debug: {response.json()}, status code: {response.status_code}, video id:{video_id}")
+        if not videoresource: # video not found
+            return None
+        else:
+            data = videoresource[0]
         
-        # the API returns 200 even when it doesnt find the video i requested.
-        if len(resource)>0:
-            items = resource[0]
-        
-            duration_raw = items['contentDetails']['duration']
+            duration_raw = data['contentDetails']['duration']
             duration_proc = duration_raw.replace('PT', '').replace('M', ':').replace('H', ':').replace('S', '')
             try: dt = datetime.strptime(duration_proc, '%H:%M:%S')
             except: dt = datetime.strptime(duration_proc, '%M:%S')
             delta = timedelta(hours=dt.hour, minutes=dt.minute, seconds=dt.second)
             
-            return VideoUnit(youtube_id=video_id, title=items['snippet']['title'], duration=delta, published_at=items['snippet']['publishedAt'], thumbnail_url=items['snippet']['thumbnails']['medium']['url'])
+            return VideoUnit(youtube_id=video_id, title=data['snippet']['title'], duration=delta, published_at=data['snippet']['publishedAt'], thumbnail_url=data['snippet']['thumbnails']['medium']['url'])
         
-        else:
-            return None
 
 
     
@@ -38,7 +37,7 @@ class YoutubeVideoService():
         video_resource = YoutubeAPIService.get_video_as_video_unit(video_id)
         if video_resource == None:
             return None
-        video = video_resource #VideoUnit(video_id, video_resource.items.snippet.title, video_resource.contentDetails.duration, video_resource.snippet.published_at, video_resource.thumbnails.medium)
+        video = video_resource
         video.save()
         return video
 
