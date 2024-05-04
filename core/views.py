@@ -92,7 +92,10 @@ class CreatePinView(LoginRequiredView):
         form = PinForm(request.POST)
         if form.is_valid():
             new_pin = Pin(user=request.user, text=form.cleaned_data['text'], visible=form.cleaned_data['visible'])
-            PinService.create_pin(request, new_pin, form.cleaned_data['video_id'])
+            pin = PinService.create_pin(request, new_pin, form.cleaned_data['video_id'])
+            if request.POST.get('home'):
+                return http.HttpResponseRedirect('/update-pin/'+ str(pin.id))
+            
             return http.HttpResponseRedirect('/')
         else: 
             return render(request, 'core/crud/pin/create.html', {'form':form})
