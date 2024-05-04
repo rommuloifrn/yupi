@@ -27,7 +27,8 @@ class LoginRequiredView(View):
 class HomeView(View):
     def get(self, request):
         pins = Pin.objects.all()
-        return render(request, 'core/home.html', {'pins':pins})
+        form = PinForm()
+        return render(request, 'core/home.html', {'pins':pins, 'form':form})
     
 class ProfileView(LoginRequiredView):
     def get(self, request):

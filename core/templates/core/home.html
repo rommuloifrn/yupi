@@ -4,12 +4,46 @@
 
 {% block content %}
 
-<h2>Últimos pins da comunidade</h2>
-{% for pin in pins %}
-<fieldset>
-    <legend>{{pin.video.title}}</legend>
-    <img src="{{pin.video.thumbnail_url}}" alt="">
-    <p>{{pin.text}} - {{pin.video.duration}}</p>
-</fieldset>
-{% endfor %}
+<main class="m-auto w-7/12 mt-40 text-center">
+
+    {% if request.user.is_authenticated %}
+    <span class="text-3xl font-semibold">Adicione um pin!</span>
+    <form class="mb-10" action="{% url 'create pin' %}" method="post">
+        {% csrf_token %}
+        <input class="
+            text-4xl rounded bg-crust placeholder-mauve text-mauve 
+            simple-focus
+        " placeholder=" video id" name="video_id" type="text"> <br>
+        <input hidden type="checkbox" name="visible">
+
+
+        <input class="inline py-2 px-4 mt-2 rounded cursor-pointer bg-pink hover:bg-mauve transition text-base font-semibold" type="submit" value="Enviar">
+    </form>
+    {% endif %}
+
+    <div class="mt-24">
+        <h2 class="text-3xl font-semibold mb-3">Últimos pins da comunidade</h2>
+
+        {% for pin in pins %}
+        <div class="text-left flex m-1 mb-3 p-2 bg-mantle border border-crust">
+            <div class="text-sm">
+                <img hidden class="w-32" src="{{pin.video.thumbnail_url}}" alt="">
+            </div>
+            <div class="p-1">
+                <div class="font-semibold text-subtext1 text-sm"> 
+                    <span hidden class="text-subtext1">&#40;{{pin.video.duration}}&#41</span>
+                    <span class="text-mauve">{{pin.video.title|truncatechars:35}}</span>
+                     de CANAL - {{pin.video.duration}}
+                </div>
+                <div class="text-subtext1 text-sm">
+                    pinado por <span class="font-semibold hover:text-mauve"><a href="{% url 'read user' pin.user.id %}">@{{pin.user}}</a></span>
+                </div>
+                <p class="text-overlay2">{{pin.text}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</main>
+
 {% endblock content %}

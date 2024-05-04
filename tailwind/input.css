@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .simple-btn {
+        @apply cursor-pointer text-text hover:text-mauve
+        transition;
+    }
+
+    .simple-focus {
+        @apply focus:outline-none focus:ring focus:ring-pink;
+    }
+}
