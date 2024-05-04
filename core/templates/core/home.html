@@ -9,16 +9,19 @@
     {% if request.user.is_authenticated %}
     <span class="text-3xl font-semibold">Adicione um pin!</span>
     <form class="mb-10" action="">
-        <input class="text-xl rounded bg-crust placeholder-subtext1" placeholder=" video id" type="text"> <br>
+        <input class="
+            text-4xl rounded bg-crust placeholder-mauve text-mauve 
+            simple-focus
+        " placeholder=" video id" type="text"> <br>
         <input class="inline py-2 px-4 mt-2 rounded cursor-pointer bg-pink hover:bg-mauve transition text-base font-semibold" type="submit" value="Enviar">
     </form>
     {% endif %}
 
     <div class="mt-24">
-        <h2 class="text-3xl font-semibold">Últimos pins da comunidade</h2>
+        <h2 class="text-3xl font-semibold mb-3">Últimos pins da comunidade</h2>
 
         {% for pin in pins %}
-        <div class="text-left flex m-1 p-2 bg-mantle border border-crust">
+        <div class="text-left flex m-1 mb-3 p-2 bg-mantle border border-crust">
             <div class="text-sm">
                 <img hidden class="w-32" src="{{pin.video.thumbnail_url}}" alt="">
             </div>

@@ -1,10 +1,15 @@
-<div class="bg-mantle grid grid-cols-3 py-3 px-10">
-    <a class="font-extrabold" href="{% url 'home' %}">Yupi</a>
+<div class="bg-mantle grid grid-cols-3 items-center py-1 px-10">
+    <a class="font-extrabold w-min" href="{% url 'home' %}">Yupi</a>
 
     <div>
         <form class="flex justify-center" action="{% url 'search user' %}" method="post">
             {% csrf_token %} 
-            <input class="rounded p-0.5 bg-mantle border border-base placeholder-mauve text-center" type="text" name="usernamequery" id="" placeholder="search user">
+            <input class="
+                h-8 rounded-lg p-0.5 
+                bg-crust border-2 border-base 
+                placeholder-text text-center caret-mauve text-mauve
+                simple-focus
+            " type="text" name="usernamequery" id="" placeholder="search user">
         </form>
     </div>
 
@@ -15,17 +20,17 @@
         
         
         
-        <a class="text-pink font-bold" href="{% url 'profile' %}">
+        <a class="text-pink font-bold mr-3" href="{% url 'profile' %}">
             @{{request.user}}
-        </a>&nbsp-&nbsp
+        </a>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <input class="cursor-pointer" type="submit" value="logout">
+            <input class="simple-btn" type="submit" value="logout">
         </form>
         {% else %}
 
-        <a href="{% url 'login' %}" class="text-pink">login</a>
-        <a href="{% url 'register' %}">registrar</a>
+        <a href="{% url 'login' %}" class="mr-3 simple-btn">login</a>
+        <a href="{% url 'register' %}" class="simple-btn">registrar</a>
         {% endif %}
     </div>
 </div>
