@@ -11,7 +11,7 @@
         <a href="{% url 'create pin' %}">Novo pin</a>
     </div>
     {% else %}
-    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'login' %}" class="text-pink">login</a>
     <a href="{% url 'register' %}">registrar</a>
     {% endif %}
     <form action="{% url 'search user' %}" method="post">
