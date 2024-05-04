@@ -7,9 +7,9 @@
 <h2>Últimos pins da comunidade</h2>
 {% for pin in pins %}
 <fieldset>
-    <legend>{{pin.snippet.title}}</legend>
-    <img src="{{pin.snippet.thumbnails.default.url}}" alt="">
-    <p>{{pin.text}}</p>
+    <legend>{{pin.video.title}}</legend>
+    <img src="{{pin.video.thumbnail_url}}" alt="">
+    <p>{{pin.text}} - {{pin.video.duration}}</p>
 </fieldset>
 {% endfor %}
 {% endblock content %}
