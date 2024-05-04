@@ -617,6 +617,14 @@ video {
   position: static;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.top-0 {
+  top: 0px;
+}
+
 .m-1 {
   margin: 0.25rem;
 }
@@ -647,6 +655,14 @@ video {
 
 .mt-24 {
   margin-top: 6rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
+}
+
+.mt-40 {
+  margin-top: 10rem;
 }
 
 .block {
@@ -684,6 +700,10 @@ video {
 .w-min {
   width: -moz-min-content;
   width: min-content;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .cursor-pointer {
