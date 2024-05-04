@@ -8,7 +8,7 @@ class RegisterForm(forms.Form):
     
 class PinForm(forms.Form):
     video_id = forms.CharField(max_length=200)
-    text = forms.CharField(max_length=200, widget=forms.Textarea)
+    text = forms.CharField(max_length=200, widget=forms.Textarea, required=False)
     visible = forms.BooleanField(required=False)
 
 class EditPinForm(forms.ModelForm):

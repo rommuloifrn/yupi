@@ -609,6 +609,10 @@ video {
   --tw-ring-color: rgba(var(--ctp-pink), var(--tw-ring-opacity));
 }
 
+.visible {
+  visibility: visible;
+}
+
 .static {
   position: static;
 }
