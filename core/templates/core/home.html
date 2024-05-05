@@ -1,4 +1,5 @@
 {% extends 'core/main.html' %}
+{% load static %}
 
 {% block title %}YuPi{% endblock title %}
 
@@ -8,16 +9,16 @@
 
     {% if request.user.is_authenticated %}
     <span class="text-3xl font-semibold">Adicione um pin!</span>
-    <form class="mb-10" action="{% url 'create pin' %}" method="post">
+    <form class="mb-10" id="pin_hp_form" action="{% url 'create pin' %}" method="post">
         {% csrf_token %}
         <input class="
             text-4xl rounded bg-crust placeholder-mauve text-mauve 
             simple-focus
         " placeholder=" video id" name="video_id" type="text"> <br>
-        <input hidden type="checkbox" name="visible">
+        <input hidden name="home" value="home!">
 
 
-        <input class="inline py-2 px-4 mt-2 rounded cursor-pointer bg-pink hover:bg-mauve transition text-base font-semibold" type="submit" value="Enviar">
+        <div onclick="parseUrlAndSubmit('pin_hp_form')" class=" w-min m-auto py-2 px-4 mt-2 rounded cursor-pointer bg-pink hover:bg-mauve transition text-base font-semibold"> Enviar </div>
     </form>
     {% endif %}
 
@@ -47,3 +48,7 @@
 </main>
 
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/parse_url_and_submit.js' %}"></script>
+{% endblock scripts %}

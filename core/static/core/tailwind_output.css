@@ -609,10 +609,6 @@ video {
   --tw-ring-color: rgba(var(--ctp-pink), var(--tw-ring-opacity));
 }
 
-.visible {
-  visibility: visible;
-}
-
 .static {
   position: static;
 }
@@ -645,20 +641,12 @@ video {
   margin-right: 0.75rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
 }
 
 .mt-24 {
   margin-top: 6rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
 }
 
 .mt-40 {
@@ -697,13 +685,13 @@ video {
   width: 58.333333%;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .w-min {
   width: -moz-min-content;
   width: min-content;
-}
-
-.w-full {
-  width: 100%;
 }
 
 .cursor-pointer {

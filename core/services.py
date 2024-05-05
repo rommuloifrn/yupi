@@ -57,6 +57,7 @@ class PinService():
             raise Exception("resource not encountered.")
         pin.video = video
         pin.save()
+        return pin
         
     def is_owner(user, pin):
         if pin.user != user:
