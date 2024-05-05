@@ -9,6 +9,6 @@
     }
 
     .simple-focus {
-        @apply focus:outline-none focus:ring focus:ring-pink;
+        @apply focus:outline-none focus:ring focus:ring-lavender;
     }
 }
