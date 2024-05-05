@@ -4,11 +4,18 @@
 
 @layer components {
     .simple-btn {
-        @apply cursor-pointer text-text hover:text-mauve
-        transition;
+        @apply cursor-pointer text-text hover:text-mauve transition;
+    }
+
+    .not-simple-btn {
+        @apply block p-2 mx-auto mt-4 cursor-pointer bg-text hover:bg-mauve text-crust font-semibold rounded transition;
     }
 
     .simple-focus {
         @apply focus:outline-none focus:ring focus:ring-lavender;
+    }
+
+    .l-form-input {
+        @apply bg-crust rounded focus:outline-none border-b-2 border-transparent text-text focus:border-mauve transition;
     }
 }

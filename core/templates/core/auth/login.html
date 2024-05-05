@@ -1,9 +1,22 @@
 {% extends 'core/main.html' %}
 
 {% block content %}
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Login">
-</form>
+<main class="bg-mantle m-auto w-min p-5 rounded border-r-2 border-b-2 border-crust text-lg">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        
+        <div class="mb-3"> {{ form.non_field_errors }} </div>
+        <div class="fieldWrapper">
+            {{ form.username.errors }}
+            <label class="text-subtext1" for="{{ form.username.id_for_label }}">Username:</label> <br>
+            <input class="l-form-input" type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+        </div>
+        <div class="fieldWrapper">
+            {{ form.password.errors }}
+            <label class="text-subtext1" for="{{ form.password.id_for_label }}">Password:</label> <br>
+            <input class="l-form-input" type="password" name="password" autocomplete="current-password" required id="id_password">
+        </div>
+        <input class="not-simple-btn" type="submit" value="Login">
+    </form>
+</main>
 {% endblock content %}
