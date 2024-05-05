@@ -1,7 +1,7 @@
 {% extends 'core/main.html' %}
 
 {% block content %}
-<main class="bg-mantle m-auto w-min p-5 rounded border-r-2 border-b-2 border-crust text-lg">
+<main class="auth-panel">
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
         

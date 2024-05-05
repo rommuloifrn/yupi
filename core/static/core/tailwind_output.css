@@ -656,6 +656,22 @@ video {
   outline-offset: 2px;
 }
 
+.auth-panel {
+  margin: auto;
+  width: -moz-min-content;
+  width: min-content;
+  border-radius: 0.25rem;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(var(--ctp-crust), var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgba(var(--ctp-mantle), var(--tw-bg-opacity));
+  padding: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .static {
   position: static;
 }
@@ -726,11 +742,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-max {
-  width: -moz-max-content;
-  width: max-content;
 }
 
 .w-min {

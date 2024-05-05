@@ -18,4 +18,8 @@
     .l-form-input {
         @apply bg-crust rounded focus:outline-none border-b-2 border-transparent text-text focus:border-mauve transition;
     }
+
+    .auth-panel {
+        @apply bg-mantle m-auto w-min p-5 rounded border-r-2 border-b-2 border-crust text-lg;
+    }
 }
