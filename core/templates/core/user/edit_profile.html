@@ -1,9 +1,30 @@
 {% extends 'core/main.html' %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Save">
-</form>
+<main class="mainmain">
+    <form class="flex flex-col items-center" action="" method="post">
+        {% csrf_token %}
+        {% comment %} {{form}}
+        <input type="submit" value="Save"> {% endcomment %}
+
+        <div class="mb-3"> {{ form.non_field_errors }} </div>
+        <div class="fieldWrapper">
+            {{ form.bio.errors }}
+            <label class="text-subtext1" for="{{ form.bio.id_for_label }}">Bio:</label> <br>
+            <textarea class="l-form-input w-80 h-40 p-1" name="bio" autofocus autocapitalize="none" maxlength="100" required id="id_bio">{{form.bio.value}}</textarea>
+        </div>
+
+        <div class="fieldWrapper">
+            {{ form.location.errors }}
+            <label class="text-subtext1" for="{{ form.location.id_for_label }}">Location:</label> <br>
+            <input class="l-form-input w-80" type="location" name="location" value="{{form.location.value}}" required id="id_location">
+        </div>
+
+    
+
+    <input class="not-simple-btn" type="submit" value="Save">
+    
+        
+    </form>
+</main>
 {% endblock content %}

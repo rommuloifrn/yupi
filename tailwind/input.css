@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+    .mainmain {
+        @apply m-auto w-7/12;
+    }
+
     .simple-btn {
         @apply cursor-pointer text-text hover:text-mauve transition;
     }
