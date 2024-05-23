@@ -1,8 +1,31 @@
 {% extends 'core/main.html' %}
 
 {% block content %}
-{{pin.text}}
-<div>{{pin.video.title}}</div>
+<main class="mainmain">
 
-<img src="{{pin.video.thumbnail_url}}" alt="">
+    <a href="https://youtu.be/{{pin.video.youtube_id}}" id="video-em-si" class="flex mb-5 bg-mantle p-1 hover:bg-crust transition">
+        <img class="block h-28 mr-3" src="{{pin.video.thumbnail_url}}" alt="">
+        <div>
+            <div class="font-semibold">{{pin.video.title}}</div>
+            <div>{{pin.video.duration}}</div>
+            <div class="text-sm">
+                This video was published on {{pin.video.published_at}}
+            </div>
+            
+        </div>
+    </a>
+
+    
+    <div id="texto-em-si" class="mb-3 p-2 bg-mantle border border-crust">
+        <div class="text-xl">
+            Texto do usuário
+            {% if pin.user == request.user %}
+            - <a class="simple-btn" href="{% url 'update pin' pin.id %}">edit pin</a>
+            {% endif %}
+        </div>
+        <p class="text-subtext1">{{pin.text}}</p>
+    </div>
+
+    
+</main>
 {% endblock content %}

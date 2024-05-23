@@ -1,9 +1,16 @@
 {% extends 'core/main.html' %}
 
 {% block content %}
-<form action="{% url 'update pin' pin.id %}" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Save">
-</form>
+<main class="mainmain">
+    <form class="flex flex-col items-center" action="{% url 'update pin' pin.id %}" method="post">
+        {% csrf_token %}
+
+        <div class="fieldWrapper">
+            {{ form.text.errors }}
+            <label class="text-subtext1" for="{{ form.text.id_for_label }}">Text:</label> <br>
+            <textarea class="l-form-input w-[45em] h-60 p-1" name="text" autofocus autocapitalize="none" maxlength="400" required id="id_text">{{form.text.value}}</textarea>
+        </div>
+        <input class="not-simple-btn" type="submit" value="Save">
+    </form>
+</main>
 {% endblock content %}

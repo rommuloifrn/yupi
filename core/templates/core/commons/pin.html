@@ -11,10 +11,10 @@
         <div class="text-subtext1 text-sm">
             pinado por <span class="font-semibold hover:text-mauve"><a href="{% url 'read user' pin.user.id %}">@{{pin.user}}</a></span>
         </div>
-        <p class="text-overlay2">{{pin.text}}</p>
+        <p class="text-overlay2">{{pin.text|truncatechars:270}}</p>
 
         {% if request.user == pin.user %}
-        <a class="simple-btn" href="{% url 'read pin' pin.id %}">read pin</a>
+        <a class="simple-btn underline" href="{% url 'read pin' pin.id %}">Open</a>
         <a class="simple-btn" href="{% url 'update pin' pin.id %}">edit pin</a>
         {% endif %}
     </div>
