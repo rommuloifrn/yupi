@@ -76,7 +76,7 @@ class SearchUserView(View):
     def post(self, request):
         query = request.POST.get('usernamequery', '')
         users = User.objects.filter(username__icontains=query)
-        return render(request, 'core/user/search.html', {'users':users})
+        return render(request, 'core/user/search.html', {'users':users, 'query':query})
 
 class ReadUserView(View):
     def get(self, request, *args, **kwargs):

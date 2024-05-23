@@ -2,11 +2,10 @@
 {% load static %}
 
 {% block content %}
-{% for user in users %}
-<fieldset>
-    <legend>
-        <a href="{% url 'read user' user.id %}">{{user}}</a>
-    </legend>
-</fieldset>
-{% endfor %}
+<main class="mainmain text-center flex flex-col items-center">
+    <div class="text-2xl mb-3">Searching user: "{{query}}"</div>
+    {% for user in users %}
+    {% include 'core/commons/user.html' %}
+    {% endfor %}
+</main>
 {% endblock content %}
