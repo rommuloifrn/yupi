@@ -8,9 +8,11 @@
             <span class="text-blue">{{pin.video.title|truncatechars:35}}</span>
              de CANAL - {{pin.video.duration}}
         </div>
+        {% if not user %}
         <div class="text-subtext1 text-sm">
             pinado por <span class="font-semibold hover:text-mauve"><a href="{% url 'read user' pin.user.id %}">@{{pin.user}}</a></span>
         </div>
+        {% endif %}
         <p class="text-overlay2">{{pin.text|truncatechars:270}}</p>
 
         <a class="simple-btn underline" href="{% url 'read pin' pin.id %}">Open</a>
