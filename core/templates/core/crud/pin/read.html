@@ -3,7 +3,7 @@
 {% block content %}
 <main class="mainmain">
 
-    <a href="https://youtu.be/{{pin.video.youtube_id}}" id="video-em-si" class="flex mb-5 bg-mantle p-1 hover:bg-crust transition">
+    <a href="https://youtu.be/{{pin.video.youtube_id}}" target="_blank" id="video-em-si" class="flex mb-5 bg-mantle p-1 hover:bg-crust transition">
         <img class="block h-28 mr-3" src="{{pin.video.thumbnail_url}}" alt="">
         <div>
             <div class="font-semibold">{{pin.video.title}}</div>
@@ -17,15 +17,13 @@
 
     
     <div id="texto-em-si" class="mb-3 p-2 bg-mantle border border-crust">
-        <div class="text-xl">
+        <div class="text-xl text-subtext1 font-semibold">
             Texto do usuário
             {% if pin.user == request.user %}
-            - <a class="simple-btn" href="{% url 'update pin' pin.id %}">edit pin</a>
+            - <a class="simple-btn" href="{% url 'update pin' pin.id %}">Edit</a>
             {% endif %}
         </div>
-        <p class="text-subtext1">{{pin.text}}</p>
+        <p class="">{{pin.text}}</p>
     </div>
-
-    
 </main>
 {% endblock content %}
