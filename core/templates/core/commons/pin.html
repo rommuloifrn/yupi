@@ -15,7 +15,11 @@
 
         <a class="simple-btn underline" href="{% url 'read pin' pin.id %}">Open</a>
         {% if request.user == pin.user %}
-        - <a class="simple-btn" href="{% url 'update pin' pin.id %}">Edit</a>
+        - <a class="simple-btn" href="{% url 'update pin' pin.id %}">Edit</a> -
+        <form class="inline" action="{% url 'delete pin' pin.id %}" method="post">
+            {% csrf_token %}
+            <input class="simple-btn" type="submit" value="Delete">
+        </form>
         {% endif %}
     </div>
 </div>

@@ -2,22 +2,30 @@
 
 {% block content %}
 
-<h2>{{user}}</h2>
-<p>{{user.bio}}</p>
-<p>lugar: {{user.location}}</p>
-{{user.pin_set.all.count}} pins!
+<main class="m-auto w-7/12">
+    <header class="flex mx-auto w-max">
+        <div class="bg-pink-600 size-24 mr-6 rounded-full">
 
-{% if user.pin_set.all %}
-<h2>Pins desse usuário</h2>
-{% for pin in user.pin_set.all %}
-<fieldset>
-    <legend>{{pin.video_id}}</legend>
-    <p>{{pin.text}}</p>
-    <a href="{% url 'read pin' pin.id %}">read pin</a>
-</fieldset>
-{% endfor %}
-{% else %}
-<h2>O usuário não tem pins</h2>
+        </div>
+        <div>
+            <div class="text-3xl font-semibold">{{user}}</div>
+            {{user.pin_set.all.count}} pins
+            <p class="text-subtext1 text-sm">{{user.bio}}</p>
+            {% if user.location %}
+            <p>lugar: {{user.location}}</p>
+            {% endif %}
+        </div>
+    </header>
+
+    {% if user.pin_set.all %}
+    <h2 class="text-2xl font-medium mt-10 text-center">Pins desse usuário</h2>
+    {% for pin in user.pin_set.all %}
+    {% include 'core/commons/pin.html' %}
+    {% endfor %}
+    {% else %}
+    <h2 class="text-center mt-10 text-lg">O usuário não tem pins</h2>
 {% endif %}
+
+</main>
 
 {% endblock content %}
