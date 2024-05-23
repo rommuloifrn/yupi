@@ -8,7 +8,8 @@
     }
 
     .not-simple-btn {
-        @apply block p-2 mx-auto mt-4 cursor-pointer bg-text hover:bg-mauve text-crust font-semibold rounded transition;
+        @apply block p-2 mx-auto mt-4 cursor-pointer bg-text hover:bg-mauve text-crust font-semibold rounded transition
+        w-max;
     }
 
     .simple-focus {

@@ -1,0 +1,21 @@
+<div class="text-left flex m-1 mb-3 p-2 bg-mantle border border-crust">
+    <div class="text-sm">
+        <img hidden class="w-32" src="{{pin.video.thumbnail_url}}" alt="">
+    </div>
+    <div class="p-1">
+        <div class="font-semibold text-subtext1 text-sm"> 
+            <span hidden class="text-subtext1">&#40;{{pin.video.duration}}&#41</span>
+            <span class="text-blue">{{pin.video.title|truncatechars:35}}</span>
+             de CANAL - {{pin.video.duration}}
+        </div>
+        <div class="text-subtext1 text-sm">
+            pinado por <span class="font-semibold hover:text-mauve"><a href="{% url 'read user' pin.user.id %}">@{{pin.user}}</a></span>
+        </div>
+        <p class="text-overlay2">{{pin.text}}</p>
+
+        {% if request.user == pin.user %}
+        <a class="simple-btn" href="{% url 'read pin' pin.id %}">read pin</a>
+        <a class="simple-btn" href="{% url 'update pin' pin.id %}">edit pin</a>
+        {% endif %}
+    </div>
+</div>

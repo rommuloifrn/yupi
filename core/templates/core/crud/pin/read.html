@@ -2,7 +2,7 @@
 
 {% block content %}
 {{pin.text}}
-<div>{{videoinfo.title}}</div>
+<div>{{pin.video.title}}</div>
 
-<img src="{{videoinfo.thumbnails.default.url}}" alt="">
+<img src="{{pin.video.thumbnail_url}}" alt="">
 {% endblock content %}

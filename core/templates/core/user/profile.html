@@ -1,31 +1,45 @@
 {% extends 'core/main.html' %}
 
 {% block content %}
+<main class="m-auto w-7/12">
+    <header class="flex mx-auto w-max">
+        <div class="bg-pink-600 size-24 mr-6 rounded-full">
 
-<h2>{{user}}</h2>
-<p>{{user.bio}}</p>
-<p>lugar: {{user.location}}</p>
-{{user.pin_set.all.count}} pins!
-<a href="{% url 'edit profile' %}">
-    editar perfil
-</a>
+        </div>
+        <div>
+            <div class="text-3xl font-semibold">{{user}}</div>
+            {{user.pin_set.all.count}} pins
+            <p class="text-subtext1 text-sm">{{user.bio}}</p>
+            {% if user.lugar %}
+            <p>lugar: {{user.location}}</p>
+            {% endif %}
+        </div>
+    </header>
+    
+    <a class="simple-btn underline mx-auto block w-max" href="{% url 'edit profile' %}">
+        editar perfil
+    </a>
 
-{% if user.pin_set.all %}
-<h2>Seus pins</h2>
-{% for pin in user.pin_set.all %}
-<fieldset>
-    <legend>{{pin.video}}</legend>
-    <p>{{pin.text}}</p>
-    <form action="{% url 'delete pin' pin.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="delete">
-    </form>
-    <a href="{% url 'read pin' pin.id %}">read pin</a>
-    <a href="{% url 'update pin' pin.id %}">edit pin</a>
-</fieldset>
-{% endfor %}
-{% else %}
-<h2>Você não tem pins</h2>
+    {% if user.pin_set.all %}
+    <h2 class="text-2xl font-medium mt-10 text-center">Seus pins</h2>
+    {% for pin in user.pin_set.all %}
+    {% comment %} <fieldset>
+        <legend>{{pin.video}}</legend>
+        <p>{{pin.text}}</p>
+        <form action="{% url 'delete pin' pin.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="delete">
+        </form>
+        <a href="{% url 'read pin' pin.id %}">read pin</a>
+        <a href="{% url 'update pin' pin.id %}">edit pin</a>
+    </fieldset> {% endcomment %}
+    {% include 'core/commons/pin.html' %}
+    {% endfor %}
+    {% else %}
+    <h2>Você não tem pins</h2>
 {% endif %}
+
+</main>
+
 
 {% endblock content %}

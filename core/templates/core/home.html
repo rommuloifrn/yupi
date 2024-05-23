@@ -28,7 +28,7 @@
         <h2 class="text-3xl text-subtext1 font-semibold mb-3">Últimos pins da comunidade</h2>
 
         {% for pin in pins %}
-        <div class="text-left flex m-1 mb-3 p-2 bg-mantle border border-crust">
+        {% comment %} <div class="text-left flex m-1 mb-3 p-2 bg-mantle border border-crust">
             <div class="text-sm">
                 <img hidden class="w-32" src="{{pin.video.thumbnail_url}}" alt="">
             </div>
@@ -43,7 +43,8 @@
                 </div>
                 <p class="text-overlay2">{{pin.text}}</p>
             </div>
-        </div>
+        </div> {% endcomment %}
+        {% include 'core/commons/pin.html' %}
         {% endfor %}
     </div>
 
